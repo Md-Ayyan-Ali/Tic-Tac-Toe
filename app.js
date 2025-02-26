@@ -1,8 +1,8 @@
-let boxes = document.querySelectorAll(".box");
-let resetBtn = document.querySelector("#reset-btn");
-let newBtn = document.querySelector("#renew-btn");
+let boxes = document.querySelectorAll(".box"); // Boxes for O & X
+let resetBtn = document.querySelector("#reset-btn"); // Reset Game Button 
+let newBtn = document.querySelector("#renew-btn"); // New Game Button
 let msgContainer = document.querySelector(".msg-container");
-let msg = document.querySelector("#msg");
+let msg = document.querySelector("#msg"); // Display of winner 
 
 //winning patterns we will use 2D array 
 const winPatterns = [
@@ -16,6 +16,15 @@ const winPatterns = [
     [6 ,7, 8]
 ];
 
+
+//enable-boxes to reset game
+const enableBoxes = () => {
+    for(let box of boxes) {
+        box.disabled = false;
+        box.innerText = "";
+    }
+}
+
 const resetGame = () => {
     turnO = true;
     enableBoxes();
@@ -28,6 +37,7 @@ let turnO = true;
 // track the game draw
 let count = 0;
 
+// innerText for both player to understand who's turn will be next    
 boxes.forEach((box) => {
     box.addEventListener("click", () => {
         if (turnO) {
@@ -55,13 +65,6 @@ const gameDraw = () => {
     disableBoxes();
 }
 
-//enable-boxes to reset game
-const enableBoxes = () => {
-    for(let box of boxes) {
-        box.disabled = false;
-        box.innerText = "";
-    }
-}
 
 //boxes-disabled after winning
 const disableBoxes = () => {
@@ -92,5 +95,6 @@ const checkWinner = () => {
     }
 };
 
+// added both functionality to the button 
 newBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetGame);
